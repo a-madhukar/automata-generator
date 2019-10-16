@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Rule 30 Cellular Automata</title>
+
+  <style type="text/css">
+    
+    .cells__board {
+      width:500px;
+     height:500px; 
+      background:blue; 
+      display:flex; 
+      flex-direction:column;
+      
+    }
+
+    .cells__row {
+      display:flex; 
+      height:10px;
+    }
+
+    .cells__row-cell {
+      width:10px;
+      height:10px;
+    }
+
+    .background--black {
+      background:black;
+    }
+
+    .background--grey {
+      background:grey;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div id="app">
+    
+    <!-- <ul>
+      <li v-for="cell in cells" style="display:inline">
+        <ul>
+          <li v-for="number in cell" v-text="number" style="display:inline;"></li>
+        </ul>
+      </li>
+    </ul> -->
+    
+    <div class="cells__board">
+      <div class="cells__row" v-for="cell in cells">
+        <div class="cells__row-cell" v-for="number in cell" :class="number == 1 ? 'background--black' : 'background--grey'"></div>
+      </div>
+      
+    </div>
+    
+    <hr>
+    
+    log
+    
+    <ul>
+      <li v-for="statement in log" v-text="statement"></li>
+    </ul>
+    
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js" integrity="sha256-ufGElb3TnOtzl5E4c/qQnZFGP+FYEZj5kbSEdJNrw0A=" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+  
+  
+</body>
+</html>
