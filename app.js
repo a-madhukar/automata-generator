@@ -1,8 +1,18 @@
-new Vue({
-  el: '#app', 
-  
-  methods:{
-    init() {
+'use strict'; 
+
+class CellularAutomata 
+{
+
+    constructor () {
+
+    }
+
+    init () {
+
+      let generatePatternButton = document.querySelector('#generatePatternButton'); 
+
+      generatePatternButton.addEventListener('click', this.generatePattern.bind(this)); 
+
 
       let cellsBoard = document.querySelector(".cells__board");
 
@@ -39,7 +49,7 @@ new Vue({
 
       }
       
-    }, 
+    }
 
 
     generatePattern () {
@@ -84,14 +94,12 @@ new Vue({
 
           currentRowCells[i].classList.add(result ? 'background--on' : 'background--off'); 
 
-          // debugger; 
-
         }
 
 
       } 
 
-    }, 
+    }
 
     setAllCellsToFalse (cells) {
 
@@ -103,7 +111,7 @@ new Vue({
           
       }
 
-    }, 
+    }
 
     getNumberOfRowsToDraw () {
 
@@ -111,20 +119,20 @@ new Vue({
 
 
       return containerHeight/12; 
-    }, 
+    }
 
     getNumberOfCellsToDraw (row) {
 
       return row.offsetWidth / 10; 
 
-    }, 
+    }
 
 
-    getPatternString(leftNo, currentNo, rightNo) {
+    getPatternString (leftNo, currentNo, rightNo) {
       return '' + leftNo + '' + currentNo + '' + rightNo;
-    }, 
+    }
 
-    getResultOfPattern(patternString) {
+    getResultOfPattern (patternString) {
       let results = {
         '111':0, 
         '110':0, 
@@ -137,14 +145,9 @@ new Vue({
       }; 
 
       return results[patternString]; 
-    }, 
+    }
+
+}
 
 
-  }, 
-  
-  mounted(){
-    console.log("vue app is ready"); 
-    
-    this.init(); 
-  }
-}); 
+new CellularAutomata().init(); 

@@ -42,26 +42,13 @@
 
   <div id="app">
     
-    <!-- <ul>
-      <li v-for="cell in cells" style="display:inline">
-        <ul>
-          <li v-for="number in cell" v-text="number" style="display:inline;"></li>
-        </ul>
-      </li>
-    </ul> -->
 
 
-
-    <button @click="generatePattern">Generate</button>
+    <button id="generatePatternButton">Generate</button>
 
     <hr>
     
-    <div class="cells__board">
-     <!--  <div class="cells__row" v-for="cell in cells">
-        <div class="cells__row-cell" v-for="number in cell" :class="number == 1 ? 'background--black' : 'background--grey'"></div>
-      </div> -->
-      
-    </div>
+    <div class="cells__board"></div>
 
     
 
@@ -72,8 +59,6 @@
    
   </div>
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js" integrity="sha256-ufGElb3TnOtzl5E4c/qQnZFGP+FYEZj5kbSEdJNrw0A=" crossorigin="anonymous"></script>
   <script src="app.js"></script>
   
   
