@@ -4,51 +4,31 @@ class CellularAutomata
 {
 
     constructor () {
-
+      this.cellsBoard = document.querySelector(".cells__board");
+      this.generatePatternButton = document.querySelector('#generatePatternButton'); 
+      // this.cellRows = document.querySelectorAll('.cells__row'); 
     }
 
     init () {
 
-      let generatePatternButton = document.querySelector('#generatePatternButton'); 
+      this.addEventListeners(); 
+      this.drawRows(); 
+      this.drawCells(); 
 
-      generatePatternButton.addEventListener('click', this.generatePattern.bind(this)); 
+      
 
 
-      let cellsBoard = document.querySelector(".cells__board");
-
-
-      // draw the rows
-      for (let i = 1; i <= this.getNumberOfRowsToDraw(); i++) {
-
-        let cellsRow = document.createElement("div"); 
-
-        cellsRow.classList.add('cells__row'); 
-
-        cellsBoard.append(cellsRow);  
-
-      }
+      
 
 
       // draw the cells 
-      let cellRows = document.querySelectorAll('.cells__row'); 
-
-      for (let index in cellRows) {
-
-        for (let i = 1; i <= this.getNumberOfCellsToDraw(cellRows[index]); i++) {
-
-          let cell = document.createElement('div'); 
-
-
-          cell.classList.add('cells__row-cell'); 
-
-          cell.classList.add(Math.round(Math.random()) ? 'background--on' : 'background--off'); 
-
-          cellRows[index].append(cell); 
-
-        }
-
-      }
+    
       
+    }
+
+
+    addEventListeners () {
+      this.generatePatternButton.addEventListener('click', this.generatePattern.bind(this)); 
     }
 
 
@@ -145,6 +125,51 @@ class CellularAutomata
       }; 
 
       return results[patternString]; 
+    }
+
+
+    drawRows () {
+
+      console.log("drawing the rows"); 
+
+      for (let i = 1; i <= this.getNumberOfRowsToDraw(); i++) {
+
+        let cellsRow = document.createElement("div"); 
+
+        cellsRow.classList.add('cells__row'); 
+
+        this.cellsBoard.append(cellsRow);  
+      }
+
+      console.log("completed the drawing rows"); 
+    }
+
+
+    drawCells () {
+
+      let cellRows = document.querySelectorAll('.cells__row'); 
+
+      console.log("drawing the cells"); 
+
+      for (let index in cellRows) {
+
+        for (let i = 1; i <= this.getNumberOfCellsToDraw(cellRows[index]); i++) {
+
+          let cell = document.createElement('div'); 
+
+
+          cell.classList.add('cells__row-cell'); 
+
+          cell.classList.add(Math.round(Math.random()) ? 'background--on' : 'background--off'); 
+
+          cellRows[index].append(cell); 
+
+        }
+
+      }
+
+      console.log("completed the drawing cells"); 
+
     }
 
 }
