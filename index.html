@@ -9,27 +9,31 @@
     
     .cells__board {
       /*width:500px;*/
-     height:500px; 
-      background:blue; 
+      height:1000px;
+     min-height:1000px; 
+      /*background:blue; */
       
     }
 
     .cells__row {
       display:flex; 
-      height:10px;
+      height:12px;
+      /*background:grey;*/
+      border:1px solid black;
     }
 
     .cells__row-cell {
       width:10px;
       height:10px;
+      margin:1px;
     }
 
-    .background--black {
+    .background--off {
       background:black;
     }
 
-    .background--grey {
-      background:grey;
+    .background--on {
+      background:white;
     }
   </style>
 
@@ -45,13 +49,23 @@
         </ul>
       </li>
     </ul> -->
+
+
+
+    <button @click="generatePattern">Generate</button>
+
+    <hr>
     
     <div class="cells__board">
-      <div class="cells__row" v-for="cell in cells">
+     <!--  <div class="cells__row" v-for="cell in cells">
         <div class="cells__row-cell" v-for="number in cell" :class="number == 1 ? 'background--black' : 'background--grey'"></div>
-      </div>
+      </div> -->
       
     </div>
+
+    
+
+
     
     <hr>
     
