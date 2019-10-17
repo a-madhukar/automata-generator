@@ -21,7 +21,7 @@ new Vue({
       console.log("in the init method"); 
 
       let firstRow = []; 
-      let totalCells = 50; 
+      let totalCells = 80; 
 
       //setup the first row of the cell 
       for(let count = 1; count <= totalCells; count ++) {
@@ -91,9 +91,12 @@ new Vue({
 
         console.log("next range of cells: ", nextRangeOfCells); 
 
+
         this.cells.push(nextRangeOfCells); 
 
-        console.log(this.cells);
+          console.log(this.cells);
+
+       
         
         
       }
