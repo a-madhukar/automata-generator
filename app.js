@@ -6,6 +6,7 @@ class CellularAutomata
     constructor () {
       this.cellsBoard = document.querySelector(".cells__board");
       this.generatePatternButton = document.querySelector('#generatePatternButton'); 
+      // this.ruleNumberInputValue = document.querySelector('#ruleNumberInput').value; 
       // this.cellRows = document.querySelectorAll('.cells__row'); 
     }
 
@@ -14,15 +15,6 @@ class CellularAutomata
       this.addEventListeners(); 
       this.drawRows(); 
       this.drawCells(); 
-
-      
-
-
-      
-
-
-      // draw the cells 
-    
       
     }
 
@@ -35,6 +27,8 @@ class CellularAutomata
     generatePattern () {
 
       let rows = document.querySelectorAll('.cells__row'); 
+
+      let ruleNumberInputValue = document.querySelector('#ruleNumberInput').value || 30; 
 
       // set first row cells to close state. and turn 1 state on 
 
@@ -70,7 +64,7 @@ class CellularAutomata
 
           let patternString = this.getPatternString(leftCellVal, currentCellVal, rightCellVal); 
 
-          let result = this.getResultOfPattern(patternString); 
+          let result = this.getResultOfPattern(patternString, ruleNumberInputValue); 
 
           currentRowCells[i].classList.add(result ? 'background--on' : 'background--off'); 
 
@@ -98,13 +92,11 @@ class CellularAutomata
       let containerHeight = document.querySelector('.cells__board').offsetHeight;
 
 
-      return containerHeight/12; 
+      return containerHeight/7; 
     }
 
     getNumberOfCellsToDraw (row) {
-
-      return row.offsetWidth / 10; 
-
+      return row.offsetWidth / 5; 
     }
 
 
@@ -112,8 +104,39 @@ class CellularAutomata
       return '' + leftNo + '' + currentNo + '' + rightNo;
     }
 
-    getResultOfPattern (patternString) {
-      let results = {
+    getResultOfPattern (patternString, ruleNumber) {
+      let results = this.getRules(ruleNumber); 
+
+      return results[patternString]; 
+    }
+
+    getRules (ruleNumber) {
+      let rules = {
+        30: 'rule30', 
+        54: 'rule54',
+        60: 'rule60',
+        62: 'rule62', 
+        90: 'rule90',
+        94: 'rule94',
+        102: 'rule102',
+        110: 'rule110',
+        122: 'rule122', 
+        126: 'rule126',
+        150: 'rule150',  
+        158: 'rule158',
+        182: 'rule182', 
+        188: 'rule188', 
+        190: 'rule190', 
+        220: 'rule220', 
+        222: 'rule222', 
+        250: 'rule250'
+      }; 
+
+      return this[rules[ruleNumber]](); 
+    }
+
+    rule30 () {
+      return {
         '111':0, 
         '110':0, 
         '101':0,
@@ -123,10 +146,228 @@ class CellularAutomata
         '001':1,
         '000':0
       }; 
-
-      return results[patternString]; 
     }
 
+    rule54 () {
+      return {
+        '111':0, 
+        '110':0, 
+        '101':1,
+        '100':1, 
+        '011':0,
+        '010':1,
+        '001':1,
+        '000':0
+      }; 
+    }
+
+    rule60 () {
+      return {
+        '111':0, 
+        '110':0, 
+        '101':1,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':0,
+        '000':0
+      }; 
+    }
+
+    rule62 () {
+      return {
+        '111':0, 
+        '110':0, 
+        '101':1,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':1,
+        '000':0
+      }; 
+    }
+
+    rule90 () {
+      return {
+        '111':0, 
+        '110':1, 
+        '101':0,
+        '100':1, 
+        '011':1,
+        '010':0,
+        '001':1,
+        '000':0
+      }; 
+    }
+
+    rule94 () {
+      return {
+        '111':0, 
+        '110':1, 
+        '101':0,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':1,
+        '000':0
+      }; 
+    }
+
+    rule102 () {
+      return {
+        '111':0, 
+        '110':1, 
+        '101':1,
+        '100':0, 
+        '011':0,
+        '010':1,
+        '001':1,
+        '000':0
+      }; 
+    }
+
+    rule110 () {
+     return {
+        '111':0, 
+        '110':1, 
+        '101':1,
+        '100':0, 
+        '011':1,
+        '010':1,
+        '001':1,
+        '000':0
+      }; 
+    }
+
+    rule122 () {
+      return {
+        '111':0, 
+        '110':1, 
+        '101':1,
+        '100':1, 
+        '011':1,
+        '010':0,
+        '001':1,
+        '000':0
+      };
+    }
+
+    rule126 () {
+      return {
+        '111':0, 
+        '110':1, 
+        '101':1,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':1,
+        '000':0
+      };
+    }
+
+    rule150 () {
+      return {
+        '111':1, 
+        '110':0, 
+        '101':0,
+        '100':1, 
+        '011':0,
+        '010':1,
+        '001':1,
+        '000':0
+      };
+    }
+
+    rule158 () { 
+      return {
+        '111':1, 
+        '110':0, 
+        '101':0,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':1,
+        '000':0
+      };
+    }
+
+    rule182 () { 
+      return {
+        '111':1, 
+        '110':0, 
+        '101':1,
+        '100':1, 
+        '011':0,
+        '010':1,
+        '001':1,
+        '000':0
+      };
+    }
+
+    rule188 () { 
+      return {
+        '111':1, 
+        '110':0, 
+        '101':1,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':0,
+        '000':0
+      }; 
+    }
+
+    rule190 () { 
+      return {
+        '111':1, 
+        '110':0, 
+        '101':1,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':1,
+        '000':0
+      };  
+    }
+
+    rule220 () { 
+      return {
+        '111':1, 
+        '110':1, 
+        '101':0,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':0,
+        '000':0
+      };  
+    }
+
+    rule222 () {
+      return {
+        '111':1, 
+        '110':1, 
+        '101':0,
+        '100':1, 
+        '011':1,
+        '010':1,
+        '001':1,
+        '000':0
+      };
+    }
+
+    rule250 () {
+      return {
+        '111':1, 
+        '110':1, 
+        '101':1,
+        '100':1, 
+        '011':1,
+        '010':0,
+        '001':1,
+        '000':0
+      };
+    }
 
     drawRows () {
 
