@@ -5,17 +5,51 @@ class CellularAutomata
 
     constructor () {
       this.cellsBoard = document.querySelector(".cells__board");
+      this.patternOptionsSelect = document.querySelector('#patternOptionsSelect'); 
       this.generatePatternButton = document.querySelector('#generatePatternButton'); 
       // this.ruleNumberInputValue = document.querySelector('#ruleNumberInput').value; 
       // this.cellRows = document.querySelectorAll('.cells__row'); 
     }
 
     init () {
+      this.addDrawSelectOptions(); 
 
       this.addEventListeners(); 
       this.drawRows(); 
       this.drawCells(); 
       
+    }
+
+    addDrawSelectOptions () {
+      console.log("drawing the select options"); 
+
+      let rules = {
+        30: 'rule30', 
+        54: 'rule54',
+        60: 'rule60',
+        62: 'rule62', 
+        90: 'rule90',
+        94: 'rule94',
+        102: 'rule102',
+        110: 'rule110',
+        122: 'rule122', 
+        126: 'rule126',
+        150: 'rule150',  
+        158: 'rule158',
+        182: 'rule182', 
+        188: 'rule188', 
+        190: 'rule190', 
+        220: 'rule220', 
+        222: 'rule222', 
+        250: 'rule250'
+      }; 
+
+      for (let key in rules) {
+        let option = document.createElement("OPTION"); 
+        option.text = "Rule " + key; 
+        option.value = key; 
+        this.patternOptionsSelect.append(option); 
+      }
     }
 
 
@@ -28,7 +62,7 @@ class CellularAutomata
 
       let rows = document.querySelectorAll('.cells__row'); 
 
-      let ruleNumberInputValue = document.querySelector('#ruleNumberInput').value || 30; 
+      let ruleNumberInputValue = document.querySelector('#patternOptionsSelect').value || 30; 
 
       // set first row cells to close state. and turn 1 state on 
 
