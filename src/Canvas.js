@@ -2,13 +2,31 @@
 
 class Canvas {
 
-    constructor () {
+    constructor (rules) {
         this.cellsBoard = document.querySelector(".cells__board");
+        this.generatePatternButton = document.querySelector('#generatePatternButton'); 
+        this.patternOptionsSelect = document.querySelector('#patternOptionsSelect'); 
+        this.rules = rules; 
     }
 
-    init () {
-        this.drawRows(); 
-        this.drawCells(); 
+    setup () {
+        let methods = [
+            'drawRows', 
+            'drawCells',
+            'addDrawSelectOptions',
+            'addEventListeners'
+        ]
+
+        methods.forEach(method => this[method]()); 
+    }
+
+    addDrawSelectOptions () {
+        for (let key in this.rules) {
+            let option = document.createElement("OPTION"); 
+            option.text = "Rule " + key; 
+            option.value = key; 
+            this.patternOptionsSelect.append(option); 
+        }
     }
 
     drawRows () {
@@ -18,7 +36,6 @@ class Canvas {
             this.cellsBoard.append(cellsRow);  
         }
     }
-  
   
     drawCells () {
         let cellRows = document.querySelectorAll('.cells__row'); 
@@ -47,6 +64,10 @@ class Canvas {
   
     getNumberOfCellsToDraw (row) {
         return row.offsetWidth / 5; 
+    }
+
+    addEventListeners () {
+        this.generatePatternButton.addEventListener('click', this.generatePattern.bind(this)); 
     }
 }
 
