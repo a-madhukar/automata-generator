@@ -21,7 +21,7 @@ class CellularAutomata
     }
 
     addDrawSelectOptions () {
-      console.log("drawing the select options"); 
+    //   console.log("drawing the select options"); 
 
       let rules = {
         30: 'rule30', 
@@ -46,7 +46,7 @@ class CellularAutomata
 
       for (let key in rules) {
         let option = document.createElement("OPTION"); 
-        option.text = "Rule " + key; 
+        option.text = "Rule updated " + key; 
         option.value = key; 
         this.patternOptionsSelect.append(option); 
       }
@@ -405,7 +405,7 @@ class CellularAutomata
 
     drawRows () {
 
-      console.log("drawing the rows"); 
+    //   console.log("drawing the rows"); 
 
       for (let i = 1; i <= this.getNumberOfRowsToDraw(); i++) {
 
@@ -424,7 +424,7 @@ class CellularAutomata
 
       let cellRows = document.querySelectorAll('.cells__row'); 
 
-      console.log("drawing the cells"); 
+    //   console.log("drawing the cells"); 
 
       for (let index in cellRows) {
 
@@ -443,7 +443,7 @@ class CellularAutomata
 
       }
 
-      console.log("completed the drawing cells"); 
+    //   console.log("completed the drawing cells"); 
 
     }
 
