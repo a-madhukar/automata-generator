@@ -1,5 +1,7 @@
 'use strict'; 
 
+const Canvas = require('./Canvas'); 
+
 class CellularAutomata 
 {
 
@@ -7,17 +9,21 @@ class CellularAutomata
       this.cellsBoard = document.querySelector(".cells__board");
       this.patternOptionsSelect = document.querySelector('#patternOptionsSelect'); 
       this.generatePatternButton = document.querySelector('#generatePatternButton'); 
+      this.canvas = new Canvas(); 
       // this.ruleNumberInputValue = document.querySelector('#ruleNumberInput').value; 
       // this.cellRows = document.querySelectorAll('.cells__row'); 
     }
 
     init () {
-      this.addDrawSelectOptions(); 
+        this.addDrawSelectOptions(); 
 
-      this.addEventListeners(); 
-      this.drawRows(); 
-      this.drawCells(); 
-      
+        this.addEventListeners();
+
+        this.canvas.init(); 
+        
+    //   this.drawRows(); 
+    //   this.drawCells(); 
+    
     }
 
     addDrawSelectOptions () {
@@ -110,29 +116,13 @@ class CellularAutomata
     }
 
     setAllCellsToFalse (cells) {
-
       for (let i = 0; i<cells.length; i++) {
         if (cells[i].classList.contains('background--on')) {
           cells[i].classList.remove('background--on'); 
           cells[i].classList.add('background--off'); 
         }
-          
       }
-
     }
-
-    getNumberOfRowsToDraw () {
-
-      let containerHeight = document.querySelector('.cells__board').offsetHeight;
-
-
-      return containerHeight/7; 
-    }
-
-    getNumberOfCellsToDraw (row) {
-      return row.offsetWidth / 5; 
-    }
-
 
     getPatternString (leftNo, currentNo, rightNo) {
       return '' + leftNo + '' + currentNo + '' + rightNo;
@@ -401,50 +391,6 @@ class CellularAutomata
         '001':1,
         '000':0
       };
-    }
-
-    drawRows () {
-
-    //   console.log("drawing the rows"); 
-
-      for (let i = 1; i <= this.getNumberOfRowsToDraw(); i++) {
-
-        let cellsRow = document.createElement("div"); 
-
-        cellsRow.classList.add('cells__row'); 
-
-        this.cellsBoard.append(cellsRow);  
-      }
-
-      console.log("completed the drawing rows"); 
-    }
-
-
-    drawCells () {
-
-      let cellRows = document.querySelectorAll('.cells__row'); 
-
-    //   console.log("drawing the cells"); 
-
-      for (let index in cellRows) {
-
-        for (let i = 1; i <= this.getNumberOfCellsToDraw(cellRows[index]); i++) {
-
-          let cell = document.createElement('div'); 
-
-
-          cell.classList.add('cells__row-cell'); 
-
-          cell.classList.add(Math.round(Math.random()) ? 'background--on' : 'background--off'); 
-
-          cellRows[index].append(cell); 
-
-        }
-
-      }
-
-    //   console.log("completed the drawing cells"); 
-
     }
 
 }
